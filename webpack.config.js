@@ -10,15 +10,22 @@ module.exports = {
         '.html','.js', '.jsx'
     ],
     module:{
+        preLoaders: [
+            {
+                test: /\.js$/,
+                loaders: ['eslint'],
+                include: [new RegExp(path.join(__dirname, 'src'))]
+            }
+        ],
         loaders:[
             {
-                test: /\.jsx?$/,
+                test: /\.js$/,
                 include: [
                     path.resolve(__dirname, 'src')
                 ],
                 loader: "babel-loader",
                 presets: ['es2015', 'react'],
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules|bower_components)/
             },
             {   test: /\.html$/, loader: "raw-loader"   }
         ]
